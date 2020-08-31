@@ -25,6 +25,7 @@ INSERT INTO users(username, password) VALUES
 
 INSERT INTO plant_posts(name, user_id, location) VALUES 
   ('spider plant', 1, 'hoxton'),
+  ('pink geranium', 1, 'galve'),
   ('oxalis', 2, 'galve'),
   ('cactus', 2, 'boobooland')
 ;

@@ -4,9 +4,9 @@
 	"description": "TDD REST api for baby plants giveaway in london",
 	"main": "index.js",
 	"scripts": {
-		"testdb": "NODE_ENV=test tape 'src/tests/database.tests.js' | tap-spec",
-		"testserver": "NODE_ENV=test tape 'src/tests/server.tests.js' | tap-spec",
-		"test": "NODE_ENV=test tape 'src/tests/tests.js' | tap-spec",
+		"testdb": "cross-env NODE_ENV=test tape 'src/tests/database.tests.js' | tap-spec",
+		"testserver": "cross-env NODE_ENV=test tape 'src/tests/server.tests.js' | tap-spec",
+		"test": "cross-env NODE_ENV=test tape 'src/tests/tests.js' | tap-spec",
 		"dev": "nodemon src/index.js",
 		"start": "node src/index.js"
 	},

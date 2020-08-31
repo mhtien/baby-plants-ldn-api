@@ -3,8 +3,5 @@
 	"useTabs": true,
 	"semi": false,
 	"singleQuote": true,
-	"bracketSpacing": true,
-	"arrowParens": "avoid",
-	"requirePragma": true,
-	"insertPragma": true
+	"bracketSpacing": true
 }

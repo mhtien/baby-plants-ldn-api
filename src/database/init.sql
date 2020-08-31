@@ -17,4 +17,15 @@ CREATE TABLE plant_posts
   location VARCHAR(255) NOT NULL
 );
 
+INSERT INTO users(username, password) VALUES 
+  ('moo', 'iloveplants'),
+  ('staffan', 'imokwithplants')
+;
+
+INSERT INTO plant_posts(name, user_id, location) VALUES 
+  ('spider plant', 1, 'hoxton'),
+  ('oxalis', 2, 'galve')
+;
+
+
 COMMIT;

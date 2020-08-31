@@ -1,18 +1,24 @@
-const server = require('./../server')
-const supertest = require('supertest')
 const test = require('tape')
+const supertest = require('supertest')
 const nock = require('nock')
+const server = require('./../server')
+const build = require('./../database/build')
+
+test('initialise', (t) => {
+	let num = 2
+	t.equal(num, 2, 'should return 2')
+	t.end()
+})
 
 test('check home route', (t) => {
-	const mocks = nock('https://www.babyplantsldn.com')
-
-	mocks.get('/').reply(200, { text: 'this is the home route' })
+	const mocks = nock('https://babyplantsldn.herokuapp.com') // nock not intercepting
+	mocks.get('/posts').reply(200, { text: 'this is the home route' })
 
 	supertest(server)
-		.get('/')
+		.get('/posts')
 		.expect(200)
 		.then((res) => {
-			t.equal(res.text, 'this is the home route')
+			t.equal(res.body.name, 'spider plant')
 			t.end()
 		})
 })

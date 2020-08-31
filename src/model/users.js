@@ -12,6 +12,18 @@ const checkUserDB = (username) => {
 	})
 }
 
+const createUserDB = (data) => {
+	const username = data.username
+	const password = data.password
+	return db
+		.query(
+			'INSERT INTO users(username, password) VALUES($1,$2) RETURNING username',
+			[username, password]
+		)
+		.then((result) => result.rows[0])
+}
+
 module.exports = {
 	checkUserDB,
+	createUserDB,
 }

@@ -14,8 +14,12 @@ CREATE TABLE plant_posts
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   user_id INTEGER REFERENCES users(id),
-  location VARCHAR(255) NOT NULL
+  location VARCHAR(255) NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL
 );
+
+SET TIMEZONE = 'Europe/London';
 
 INSERT INTO users(username, password) VALUES 
   ('moo', 'iloveplants'),
@@ -23,11 +27,11 @@ INSERT INTO users(username, password) VALUES
   ('puki', 'unicornplants')
 ;
 
-INSERT INTO plant_posts(name, user_id, location) VALUES 
-  ('spider plant', 1, 'hoxton'),
-  ('pink geranium', 1, 'gavle'),
-  ('oxalis', 2, 'gavle'),
-  ('cactus', 2, 'boobooland')
+INSERT INTO plant_posts(name, user_id, location, created_at, updated_at) VALUES 
+  ('spider plant', 1, 'hoxton', current_timestamp, current_timestamp),
+  ('pink geranium', 1, 'gavle', current_timestamp, current_timestamp),
+  ('oxalis', 2, 'gavle', current_timestamp, current_timestamp),
+  ('cactus', 2, 'boobooland', current_timestamp, current_timestamp)
 ;
 
 

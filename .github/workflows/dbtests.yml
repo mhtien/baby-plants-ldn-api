@@ -33,7 +33,7 @@ jobs:
             - name: Install dependencies
               run: npm i
             - name: Runs test script
-              run: npm testdb
+              run: npm run testdb
               env:
                 TEST_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
                 CI: true

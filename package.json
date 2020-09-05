@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"testdb": "cross-env NODE_ENV=test tape 'src/tests/database.tests.js' | tap-spec",
-		"testserver": "cross-env NODE_ENV=test tape 'src/tests/server.tests.js' | tap-spec",
+		"testserver": "cross-env tape 'src/tests/server.tests.js' | tap-spec",
 		"test": "cross-env NODE_ENV=test tape 'src/tests/tests.js' | tap-spec",
 		"dev": "nodemon src/index.js",
 		"start": "node src/index.js"

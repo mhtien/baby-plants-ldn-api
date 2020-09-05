@@ -23,15 +23,15 @@ server.get('/posts', postsHandlers.getAllPosts)
 server.post('/signup', userHandlers.userSignUp)
 
 // 6. Posts by location route
-server.get('/posts/location', postsHandlers.getPostsByLocation)
+server.get('/posts/location/:location', postsHandlers.getPostsByLocation)
 
 // 7. Missing route - for all other urls
 
 // 8. New post route - post
-server.post('/newpost', postsHandlers.createNewPost)
+server.post('/newpost', express.urlencoded(), postsHandlers.createNewPost)
 
 // 9. Post route - put
-server.put('/post/:id', postsHandlers.updatePost)
+server.put('/post/:id', express.urlencoded(), postsHandlers.updatePost)
 
 // 10. Post route - delete
 server.delete('/post/:id', postsHandlers.deletePost)

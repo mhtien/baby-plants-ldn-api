@@ -14,17 +14,21 @@ CREATE TABLE plant_posts
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   user_id INTEGER REFERENCES users(id),
-  location VARCHAR(255) NOT NULL
+  location VARCHAR(255) NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL,
+  updated_at TIMESTAMPTZ NOT NULL
 );
+
+SET TIMEZONE = 'Europe/London';
 
 INSERT INTO users(username, password) VALUES 
   ('moo', 'iloveplants'),
   ('staffan', 'imokwithplants')
 ;
 
-INSERT INTO plant_posts(name, user_id, location) VALUES 
-  ('spider plant', 1, 'hoxton'),
-  ('oxalis', 2, 'galve')
+INSERT INTO plant_posts(name, user_id, location, created_at, updated_at) VALUES 
+  ('spider plant', 1, 'hoxton', current_timestamp, current_timestamp),
+  ('oxalis', 2, 'gavle', current_timestamp, current_timestamp)
 ;
 
 

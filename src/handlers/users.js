@@ -22,7 +22,9 @@ const userLogin = async (req, res, next) => {
 		error.status = 401
 		next(error)
 	}
-	const token = jwt.sign(userId, SECRET)
+	const token = jwt.sign({ user_id: userId }, SECRET, {
+		expiresIn: '1h',
+	})
 	const response = {
 		username: usernameDB,
 		access_token: token,
@@ -46,8 +48,8 @@ const userSignUp = async (req, res, next) => {
 			.then((user) => {
 				console.log('user', user)
 				const { id, username } = user
-				const token = jwt.sign(id, SECRET, {
-					// expiresIn: '1h',
+				const token = jwt.sign({ user_id: id }, SECRET, {
+					expiresIn: '1h',
 				})
 				const response = {
 					username: username,

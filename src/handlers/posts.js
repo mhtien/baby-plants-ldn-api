@@ -33,33 +33,21 @@ const getPostsByLocation = (req, res, next) => {
 
 const createNewPost = async (req, res, next) => {
 	const body = req.body
-	const headers = req.headers.authorization
-	const token = headers.replace('Bearer ', '')
-
-	const payload = jwt.verify(token, SECRET)
-	const userId = payload['user_id']
-	console.log('id=', userId)
-
-	const checkUser = await userModel.checkUserIdDB(userId)
-
-	if (!checkUser) {
-		const error = new Error('Opps you are not logged in')
-		error.status = 401
-		next(error)
-	}
+	const userId = req.user.id
 
 	body['user_id'] = userId
 
 	postsModel
 		.newPostDB(body)
-		.then((result) => res.send(result))
+		.then((result) => res.status(201).send(result))
 		.catch(next)
 }
 
 const updatePost = (req, res, next) => {
 	const body = req.body
-	console.log(body)
-	//get user Id from cookie rather to authenticate
+	const postId = req.params.id
+	body.id = postId
+
 	postsModel
 		.updatePostDB(body)
 		.then((result) => res.send(result))

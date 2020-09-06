@@ -22,7 +22,7 @@ const createUserDB = (data) => {
 		.then((result) => result.rows[0])
 }
 
-const checkUserIdDB = (id) => {
+const getUserByIdDB = (id) => {
 	return db
 		.query('SELECT * FROM users WHERE id = $1', [id])
 		.then((result) => result.rows[0])
@@ -31,5 +31,5 @@ const checkUserIdDB = (id) => {
 module.exports = {
 	checkUserDB,
 	createUserDB,
-	checkUserIdDB,
+	getUserByIdDB,
 }

@@ -3,6 +3,7 @@ const server = express()
 const postsHandlers = require('./handlers/posts')
 const userHandlers = require('./handlers/users')
 const handleError = require('./middleware/error')
+const verifyUser = require('./middleware/auth')
 // need to require all handlers
 
 server.use(express.json())
@@ -28,13 +29,23 @@ server.get('/posts/location/:location', postsHandlers.getPostsByLocation)
 // 7. Missing route - for all other urls
 
 // 8. New post route - post
-server.post('/newpost', express.urlencoded(), postsHandlers.createNewPost)
+server.post(
+	'/newpost',
+	express.urlencoded(),
+	verifyUser,
+	postsHandlers.createNewPost
+)
 
 // 9. Post route - put
-server.put('/post/:id', express.urlencoded(), postsHandlers.updatePost)
+server.put(
+	'/post/:id',
+	express.urlencoded(),
+	verifyUser,
+	postsHandlers.updatePost
+)
 
 // 10. Post route - delete
-server.delete('/post/:id', postsHandlers.deletePost)
+server.delete('/post/:id', verifyUser, postsHandlers.deletePost)
 
 server.use(handleError)
 

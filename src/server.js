@@ -14,13 +14,13 @@ server.get('/', postsHandlers.getRecentPosts)
 server.get('/posts/:id', postsHandlers.getPostsById)
 
 // 3. Login route - post
-server.post('/login', userHandlers.userLogin)
+server.post('/login', express.urlencoded(), userHandlers.userLogin)
 
 // 4. Posts route - get all posts
 server.get('/posts', postsHandlers.getAllPosts)
 
 // 5. Signup route - post
-server.post('/signup', userHandlers.userSignUp)
+server.post('/signup', express.urlencoded(), userHandlers.userSignUp)
 
 // 6. Posts by location route
 server.get('/posts/location/:location', postsHandlers.getPostsByLocation)
